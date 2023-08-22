@@ -13,8 +13,12 @@ class ChessPlayer():
         self.score = 0
 
 def simulateMatch(player1, player2):
+
+    if (player1.isBoring or player2.isBoring) and (abs(player2.ELO_Rating - player1.ELO_Rating) <= 100):
+        player1.score += 0.5
+        player2.score += 0.5
     
-    if player1.ELO_Rating - player2.ELO_Rating > 100:
+    elif player1.ELO_Rating - player2.ELO_Rating > 100:
         player1.score += 1
     
     elif player2.ELO_Rating - player1.ELO_Rating > 100:
@@ -37,10 +41,6 @@ def simulateMatch(player1, player2):
             player1.score += 1
         else:
             player2.score += 1
-    
-    elif player1.isBoring or player2.isBoring and (abs(player2.ELO_Rating - player1.ELO_Rating) <= 100):
-        player1.score += 0.5
-        player2.score += 0.5
         
 
 def main():
