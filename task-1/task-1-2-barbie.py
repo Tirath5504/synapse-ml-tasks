@@ -1,21 +1,26 @@
 """ Task 1.2 """
 
-lst = ["0001", "0011", "0101", "1011", "1101", "1111"]
+def main():
 
-new_lst = []
+    lst = ["0001", "0011", "0101", "1011", "1101", "1111"]
 
-for l in lst:
-    new_lst.append(int(l, base=2))
+    new_lst = []
 
-length = len(new_lst) - 2
-    
-for i in range(length):
+    for l in lst:
+        new_lst.append(int(l, base=2))
 
-    ele1 = new_lst[0]
-    ele2 = new_lst[1]
+    length = len(new_lst) - 2
+        
+    for i in range(length):
 
-    new_lst.append(ele1 + ele2)
+        ele1 = new_lst[0]
+        ele2 = new_lst[1]
 
-    new_lst = sorted(new_lst[2:])
+        new_lst.append(ele1 + ele2)
 
-print(new_lst)
+        new_lst = sorted(new_lst[2:])
+
+    print(new_lst)
+
+if __name__ == "__main__":
+    main()
