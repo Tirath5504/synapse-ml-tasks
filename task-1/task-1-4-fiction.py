@@ -1,5 +1,6 @@
 """ Task 1.4 """
 from tabulate import tabulate
+from random import randint
 
 class ChessPlayer():
 
@@ -12,7 +13,35 @@ class ChessPlayer():
         self.score = 0
 
 def simulateMatch(player1, player2):
-    ...
+    
+    if player1.ELO_Rating - player2.ELO_Rating > 100:
+        player1.score += 1
+    
+    elif player2.ELO_Rating - player1.ELO_Rating > 100:
+        player2.score += 1
+
+    elif player1.ELO_Rating - player2.ELO_Rating <= 100 and player1.ELO_Rating - player2.ELO_Rating >= 50:
+        if player1.ELO_Rating > (player2.ELO_Rating + randint(1, 10) * player2.tenacity):
+            player2.score += 1
+        else:
+            player1.score += 1
+    
+    elif player2.ELO_Rating - player1.ELO_Rating <= 100 and player2.ELO_Rating - player1.ELO_Rating >= 50:
+        if player2.ELO_Rating > (player1.ELO_Rating + randint(1, 10) * player1.tenacity):
+            player1.score += 1
+        else:
+            player2.score += 1
+    
+    elif abs(player2.ELO_Rating - player1.ELO_Rating) < 50:
+        if player1.tenacity > player2.tenacity:
+            player1.score += 1
+        else:
+            player2.score += 1
+    
+    elif player1.isBoring or player2.isBoring and (abs(player2.ELO_Rating - player1.ELO_Rating) <= 100):
+        player1.score += 0.5
+        player2.score += 0.5
+        
 
 def main():
 
@@ -34,7 +63,7 @@ def main():
                 played.append((player1, player2))
                 played.append((player2, player1))
 
-    players.sort(key= lambda player: player.score)
+    players.sort(key= lambda player: player.score, reverse=True)
 
     data = []
 
@@ -45,9 +74,9 @@ def main():
 
     table = tabulate(data, headers, tablefmt="grid")
 
-    print(table)
-
     print(f"The winner is {players[0].name}!")
+    
+    print(table)
 
 if __name__ == "__main__":
     main()
