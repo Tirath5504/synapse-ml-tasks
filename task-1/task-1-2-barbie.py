@@ -9,18 +9,26 @@ def main():
     for l in lst:
         new_lst.append(int(l, base=2))
 
-    length = len(new_lst) - 2
+    new_lst.sort()
+
+    s = sum(new_lst) / 2
+    sum1, sum2, flag, ans = new_lst.pop(), 0, 0, []
+
+    for i in range(len(new_lst)-1, 0, -1):
+
+        if (sum1 + new_lst[0]) <= s:
+            sum1 += new_lst.pop(0)
+        elif flag != 1:
+            ans.append(sum1)
+            flag = 1
+
+        if flag == 1:
+            sum2 = sum(new_lst)
+            ans.append(sum2)
         
-    for i in range(length):
 
-        ele1 = new_lst[0]
-        ele2 = new_lst[1]
+    print(abs(ans[0] - ans[1]))
 
-        new_lst.append(ele1 + ele2)
-
-        new_lst = sorted(new_lst[2:])
-
-    print(new_lst)
 
 if __name__ == "__main__":
     main()
