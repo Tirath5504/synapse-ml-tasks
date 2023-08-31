@@ -4,7 +4,7 @@ def exploded_chains(lst):
 
     for l in lst:
         for i, ele in enumerate(l):
-            if i < len(l) - 3:
+            if i <= len(l) - 3:
                 if ele == l[i+1] - 1 and ele == l[i+2] - 2:
                     l.remove(l[i])
                     l.remove(l[i])

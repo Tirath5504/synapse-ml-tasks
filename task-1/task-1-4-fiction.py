@@ -24,17 +24,17 @@ def simulateMatch(player1, player2):
     elif player2.ELO_Rating - player1.ELO_Rating > 100:
         player2.score += 1
 
-    elif player1.ELO_Rating - player2.ELO_Rating <= 100 and player1.ELO_Rating - player2.ELO_Rating >= 50:
-        if player1.ELO_Rating > (player2.ELO_Rating + randint(1, 10) * player2.tenacity):
-            player2.score += 1
-        else:
+    elif ((player1.ELO_Rating - player2.ELO_Rating) <= 100) and ((player1.ELO_Rating - player2.ELO_Rating) >= 50):
+        if player1.ELO_Rating > (randint(1, 10) * player2.tenacity):
             player1.score += 1
+        else:
+            player2.score += 1
     
-    elif player2.ELO_Rating - player1.ELO_Rating <= 100 and player2.ELO_Rating - player1.ELO_Rating >= 50:
-        if player2.ELO_Rating > (player1.ELO_Rating + randint(1, 10) * player1.tenacity):
-            player1.score += 1
-        else:
+    elif ((player2.ELO_Rating - player1.ELO_Rating) <= 100) and ((player2.ELO_Rating - player1.ELO_Rating) >= 50):
+        if player2.ELO_Rating > (randint(1, 10) * player1.tenacity):
             player2.score += 1
+        else:
+            player1.score += 1
     
     elif abs(player2.ELO_Rating - player1.ELO_Rating) < 50:
         if player1.tenacity > player2.tenacity:
